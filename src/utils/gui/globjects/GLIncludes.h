@@ -31,6 +31,14 @@
 #undef NOMINMAX
 #endif
 
+#define HAVE_GLEW
+#ifdef HAVE_GLEW
+#define GLEW_STATIC
+#include <GL/glew.h>
+#ifndef APIENTRY
+#define APIENTRY GLAPIENTRY
+#endif
+#endif
 #include <GL/gl.h>
 #include <GL/glu.h>
 

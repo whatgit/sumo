@@ -38,7 +38,7 @@ target_link_libraries(netedit utils_gui_cursors utils_gui_shortcuts
         utils_foxtools foreign_eulerspiral netedit_frames netedit_changes
         netedit_netelements netedit_demandelements utils_gui_div
         utils_gui_settings utils_gui_images netedit_additionals netedit_dialogs
-        utils_gui_windows utils_gui_globjects utils_gui_tracker utils_foxtools utils_vehicle utils_emissions foreign_phemlight ${netconvertlibs} ${FOX_LIBRARY} ${GL2PS_LIBRARIES})
+        utils_gui_windows utils_gui_globjects utils_gui_tracker utils_foxtools utils_vehicle utils_emissions foreign_phemlight ${netconvertlibs} ${FOX_LIBRARY} ${GL2PS_LIBRARIES} GLEW)
 if (MSVC)
     set_target_properties(netedit PROPERTIES LINK_FLAGS_RELEASE "/SUBSYSTEM:WINDOWS /ENTRY:mainCRTStartup")
     target_link_libraries(netedit opengl32 glu32)

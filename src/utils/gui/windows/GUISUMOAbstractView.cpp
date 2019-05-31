@@ -31,9 +31,6 @@
 #include <cassert>
 #include <limits>
 #include <fxkeys.h>
-#ifdef HAVE_GL2PS
-#include <gl2ps.h>
-#endif
 #include <utils/foxtools/FXSingleEventThread.h>
 #include <utils/foxtools/MFXCheckableButton.h>
 #include <utils/foxtools/MFXImageHelper.h>
@@ -59,6 +56,9 @@
 #include <utils/gui/globjects/GLIncludes.h>
 #include <utils/gui/settings/GUIVisualizationSettings.h>
 #include <foreign/fontstash/fontstash.h>
+#ifdef HAVE_GL2PS
+#include <gl2ps.h>
+#endif
 
 #include "GUISUMOAbstractView.h"
 #include "GUIMainWindow.h"

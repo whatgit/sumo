@@ -40,7 +40,11 @@
 #include <utils/gui/globjects/GLIncludes.h>
 #include <utils/gui/settings/GUIVisualizationSettings.h>
 #define GLFONTSTASH_IMPLEMENTATION // Expands implementation
+#ifdef HAVE_GLEW
+#include <foreign/fontstash/gl3corefontstash.h>
+#else
 #include <foreign/fontstash/glfontstash.h>
+#endif
 #include <utils/geom/Boundary.h>
 
 #include "Roboto.h"
@@ -598,6 +602,16 @@ GLHelper::resetFont() {
 bool
 GLHelper::initFont() {
     if (myFont == nullptr) {
+#ifdef HAVE_GLEW
+        glewExperimental=GL_TRUE;
+        GLenum err = glewInit();
+        if (err != GLEW_OK) {
+            std::cout << "GLEW init failed: " << glewGetErrorString(err) << "\n";
+            exit(1);
+        } else {
+            std::cout << "Using GLEW " << glewGetString(GLEW_VERSION) << "\n";
+        }
+#endif
         myFont = glfonsCreate(2048, 2048, FONS_ZERO_BOTTOMLEFT);
         if (myFont != nullptr) {
             const int fontNormal = fonsAddFontMem(myFont, "medium", data_font_Roboto_Medium_ttf, data_font_Roboto_Medium_ttf_len, 0);

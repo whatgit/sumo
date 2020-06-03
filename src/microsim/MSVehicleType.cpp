@@ -35,6 +35,7 @@
 #include <microsim/cfmodels/MSCFModel_Rail.h>
 #include "MSNet.h"
 #include "cfmodels/MSCFModel_IDM.h"
+#include "cfmodels/MSCFModel_Heterogeneous.h"
 #include "cfmodels/MSCFModel_Kerner.h"
 #include "cfmodels/MSCFModel_Krauss.h"
 #include "cfmodels/MSCFModel_KraussOrig1.h"
@@ -299,6 +300,9 @@ MSVehicleType::build(SUMOVTypeParameter& from) {
             break;
         case SUMO_TAG_CF_IDMM:
             vtype->myCarFollowModel = new MSCFModel_IDM(vtype, true);
+            break;
+        case SUMO_TAG_CF_HTG:
+            vtype->myCarFollowModel = new MSCFModel_Heterogeneous(vtype);
             break;
         case SUMO_TAG_CF_BKERNER:
             vtype->myCarFollowModel = new MSCFModel_Kerner(vtype);

@@ -187,6 +187,7 @@ StringBijection<int>::Entry SUMOXMLDefinitions::tags[] = {
     { "carFollowing-ACC",           SUMO_TAG_CF_ACC },
     { "carFollowing-CACC",          SUMO_TAG_CF_CACC },
     { "carFollowing-CC",            SUMO_TAG_CF_CC },
+	{ "carFollowing-Heterogeneous", SUMO_TAG_CF_HTG },
     // Person
     { "person",                     SUMO_TAG_PERSON },
     { "personTrip",                 SUMO_TAG_PERSONTRIP },
@@ -614,6 +615,23 @@ StringBijection<int>::Entry SUMOXMLDefinitions::attrs[] = {
     { "flatbedD",               SUMO_ATTR_CF_CC_FLATBED_D },
     { "flatbedH",               SUMO_ATTR_CF_CC_FLATBED_H },
 
+	{ "heterogeneous_cc_thw",	SUMO_ATTR_CF_CTG_CC_THW},
+	{ "heterogeneous_ct_thw",	SUMO_ATTR_CF_CTG_CT_THW},
+	{ "heterogeneous_tc_thw",	SUMO_ATTR_CF_CTG_TC_THW},
+	{ "heterogeneous_tt_thw",	SUMO_ATTR_CF_CTG_TT_THW},
+	{ "heterogeneous_cc_lc",	SUMO_ATTR_CF_CTG_CC_LC},
+	{ "heterogeneous_ct_lc",	SUMO_ATTR_CF_CTG_CT_LC},
+	{ "heterogeneous_tc_lc",	SUMO_ATTR_CF_CTG_TC_LC},
+	{ "heterogeneous_tt_lc",	SUMO_ATTR_CF_CTG_TT_LC},
+	{ "heterogeneous_cc_dhw",	SUMO_ATTR_CF_CTG_CC_DHW},
+	{ "heterogeneous_ct_dhw",	SUMO_ATTR_CF_CTG_CT_DHW},
+	{ "heterogeneous_tc_dhw",	SUMO_ATTR_CF_CTG_TC_DHW},
+	{ "heterogeneous_tt_dhw",	SUMO_ATTR_CF_CTG_TT_DHW},
+	{ "heterogeneous_cc_gain",	SUMO_ATTR_CF_CTG_CC_K},
+	{ "heterogeneous_ct_gain",	SUMO_ATTR_CF_CTG_CT_K},
+	{ "heterogeneous_tc_gain",	SUMO_ATTR_CF_CTG_TC_K},
+	{ "heterogeneous_tt_gain",	SUMO_ATTR_CF_CTG_TT_K},
+
     { "generateWalks",          SUMO_ATTR_GENERATE_WALKS },
     { "actType",                SUMO_ATTR_ACTTYPE },
     { "slope",                  SUMO_ATTR_SLOPE },
@@ -840,6 +858,7 @@ StringBijection<LaneChangeModel>::Entry SUMOXMLDefinitions::laneChangeModelValue
 };
 
 StringBijection<SumoXMLTag>::Entry SUMOXMLDefinitions::carFollowModelValues[] = {
+	{ "Heterogeneous", SUMO_TAG_CF_HTG},
     { "IDM",         SUMO_TAG_CF_IDM },
     { "IDMM",        SUMO_TAG_CF_IDMM },
     { "Krauss",      SUMO_TAG_CF_KRAUSS },
@@ -1054,4 +1073,3 @@ SUMOXMLDefinitions::isValidParameterValue(const std::string& /*value*/) {
 }
 
 /****************************************************************************/
-

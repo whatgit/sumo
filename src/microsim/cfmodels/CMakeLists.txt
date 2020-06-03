@@ -3,6 +3,8 @@ set(microsim_cfmodels_STAT_SRCS
    MSCFModel.h
    MSCFModel_Daniel1.cpp
    MSCFModel_Daniel1.h
+   MSCFModel_Heterogeneous.cpp
+   MSCFModel_Heterogeneous.h
    MSCFModel_IDM.cpp
    MSCFModel_IDM.h
    MSCFModel_Kerner.cpp

@@ -1205,6 +1205,30 @@ SUMOVehicleParserHelper::getAllowedCFModelAttrs() {
         allowedCFModelAttrs[SUMO_TAG_CF_CC] = ccParams;
         allParams.insert(ccParams.begin(), ccParams.end());
 
+		std::set<SumoXMLAttr> heterogeneousParams;
+		heterogeneousParams.insert(SUMO_ATTR_ACCEL);
+		heterogeneousParams.insert(SUMO_ATTR_DECEL);
+		heterogeneousParams.insert(SUMO_ATTR_SIGMA);
+		heterogeneousParams.insert(SUMO_ATTR_TAU);
+		heterogeneousParams.insert(SUMO_ATTR_CF_CTG_CC_THW);
+		heterogeneousParams.insert(SUMO_ATTR_CF_CTG_CT_THW);
+		heterogeneousParams.insert(SUMO_ATTR_CF_CTG_TC_THW);
+		heterogeneousParams.insert(SUMO_ATTR_CF_CTG_TT_THW);
+		heterogeneousParams.insert(SUMO_ATTR_CF_CTG_CC_LC);
+		heterogeneousParams.insert(SUMO_ATTR_CF_CTG_CT_LC);
+		heterogeneousParams.insert(SUMO_ATTR_CF_CTG_TC_LC);
+		heterogeneousParams.insert(SUMO_ATTR_CF_CTG_TT_LC);
+		heterogeneousParams.insert(SUMO_ATTR_CF_CTG_CC_DHW);
+		heterogeneousParams.insert(SUMO_ATTR_CF_CTG_CT_DHW);
+		heterogeneousParams.insert(SUMO_ATTR_CF_CTG_TC_DHW);
+		heterogeneousParams.insert(SUMO_ATTR_CF_CTG_TT_DHW);
+		heterogeneousParams.insert(SUMO_ATTR_CF_CTG_CC_K);
+		heterogeneousParams.insert(SUMO_ATTR_CF_CTG_CT_K);
+		heterogeneousParams.insert(SUMO_ATTR_CF_CTG_TC_K);
+		heterogeneousParams.insert(SUMO_ATTR_CF_CTG_TT_K);
+		allowedCFModelAttrs[SUMO_TAG_CF_HTG] = heterogeneousParams;
+		allParams.insert(heterogeneousParams.begin(), heterogeneousParams.end());
+
         allowedCFModelAttrs[SUMO_TAG_NOTHING] = allParams;
     }
     return allowedCFModelAttrs;
@@ -1489,4 +1513,3 @@ SUMOVehicleParserHelper::handleError(const bool hardFail, bool& abortCreation, c
 }
 
 /****************************************************************************/
-

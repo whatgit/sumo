@@ -171,11 +171,25 @@ MSCFModel_Heterogeneous::_v(const MSVehicle* const veh, const double gap2pred, c
     std::pair<const MSVehicle*, double> leader = veh->getLeader(100);   //Let's say we look ahead 100m
     if (leader.first != 0 && leader.second != -1) {
         std::string myLeaderType = leader.first->getVehicleType().getID();
-        if (myLeaderType.find("car") != std::string::npos) {
-            headwayTime = 10;
+        if ((myType->getID().find("car") != std::string::npos)
+            && (myLeaderType.find("car") != std::string::npos)) {
+            //I am a car following a car
+            headwayTime = 2.5;
         }
-        else if (myLeaderType.find("truck") != std::string::npos) {
+        else if ((myType->getID().find("car") != std::string::npos)
+            && (myLeaderType.find("truck") != std::string::npos)) {
+            //I am a car following a truck
             headwayTime = 5;
+        }
+        else if ((myType->getID().find("truck") != std::string::npos)
+            && (myLeaderType.find("car") != std::string::npos)) {
+            //I am a truck following a car
+            headwayTime = 7.5;
+        }
+        else if ((myType->getID().find("truck") != std::string::npos)
+            && (myLeaderType.find("truck") != std::string::npos)) {
+            //I am a truck following a truck
+            headwayTime = 10;
         }
         else {
             //do nothing for the moment, invalid type though

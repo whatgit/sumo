@@ -168,6 +168,19 @@ MSCFModel_Heterogeneous::_v(const MSVehicle* const veh, const double gap2pred, c
 // and http://arxiv.org/abs/cond-mat/0304337
 // we assume however constant speed for the leader
     double headwayTime = myHeadwayTime;
+    std::pair<const MSVehicle*, double> leader = veh->getLeader(100);   //Let's say we look ahead 100m
+    if (leader.first != 0 && leader.second != -1) {
+        std::string myLeaderType = leader.first->getVehicleType().getID();
+        if (myLeaderType.find("car") != std::string::npos) {
+            headwayTime = 10;
+        }
+        else if (myLeaderType.find("truck") != std::string::npos) {
+            headwayTime = 5;
+        }
+        else {
+            //do nothing for the moment, invalid type though
+        }
+    }
     if (myAdaptationFactor != 1.) {
         const VehicleVariables* vars = (VehicleVariables*)veh->getCarFollowVariables();
         headwayTime *= myAdaptationFactor + vars->levelOfService * (1. - myAdaptationFactor);

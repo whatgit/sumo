@@ -53,7 +53,11 @@ MSCFModel_Heterogeneous::MSCFModel_Heterogeneous(const MSVehicleType* vtype) :
     myAdaptationFactor(1.0),
     myAdaptationTime(0.0),
     myIterations(MAX2(1, int(TS / vtype->getParameter().getCFParam(SUMO_ATTR_CF_IDM_STEPPING, .25) + .5))),
-    myTwoSqrtAccelDecel(double(2 * sqrt(myAccel * myDecel))) {
+    myTwoSqrtAccelDecel(double(2 * sqrt(myAccel * myDecel))),
+    myHeadwayCC(vtype->getParameter().getCFParam(SUMO_ATTR_CF_CTG_CC_THW, myHeadwayTime)),
+    myHeadwayCT(vtype->getParameter().getCFParam(SUMO_ATTR_CF_CTG_CT_THW, myHeadwayTime)),
+    myHeadwayTC(vtype->getParameter().getCFParam(SUMO_ATTR_CF_CTG_TC_THW, myHeadwayTime)),
+    myHeadwayTT(vtype->getParameter().getCFParam(SUMO_ATTR_CF_CTG_TT_THW, myHeadwayTime)) {
     // IDM does not drive very precise and may violate minGap on occasion
     myCollisionMinGapFactor = vtype->getParameter().getCFParam(SUMO_ATTR_COLLISION_MINGAP_FACTOR, 0.5);
 }
@@ -174,22 +178,22 @@ MSCFModel_Heterogeneous::_v(const MSVehicle* const veh, const double gap2pred, c
         if ((myType->getID().find("car") != std::string::npos)
             && (myLeaderType.find("car") != std::string::npos)) {
             //I am a car following a car
-            headwayTime = 2.5;
+            headwayTime = myHeadwayCC;
         }
         else if ((myType->getID().find("car") != std::string::npos)
             && (myLeaderType.find("truck") != std::string::npos)) {
             //I am a car following a truck
-            headwayTime = 5;
+            headwayTime = myHeadwayCT;
         }
         else if ((myType->getID().find("truck") != std::string::npos)
             && (myLeaderType.find("car") != std::string::npos)) {
             //I am a truck following a car
-            headwayTime = 7.5;
+            headwayTime = myHeadwayTC;
         }
         else if ((myType->getID().find("truck") != std::string::npos)
             && (myLeaderType.find("truck") != std::string::npos)) {
             //I am a truck following a truck
-            headwayTime = 10;
+            headwayTime = myHeadwayTT;
         }
         else {
             //do nothing for the moment, invalid type though

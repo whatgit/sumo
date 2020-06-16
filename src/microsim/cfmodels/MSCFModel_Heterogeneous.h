@@ -57,6 +57,7 @@ public:
      */
     MSCFModel_Heterogeneous(const MSVehicleType* vtype, double accel, double decel, double emergencyDecel, double apparentDecel,
                   double headwayTime, double adaptationFactor, double adaptationTime,
+                  double thwCC, double thwCT, double thwTC, double thwTT,
                   double internalStepping);
 
 
@@ -202,6 +203,20 @@ private:
 
     /// @brief A computational shortcut
     const double myTwoSqrtAccelDecel;
+
+    /// @brief A time headway for car following car situation
+    const double myHeadwayCC;
+
+    /// @brief A time headway for car following truck situation
+    const double myHeadwayCT;
+
+    /// @brief A time headway for truck following car situation
+    const double myHeadwayTC;
+
+    /// @brief A time headway for truck following truck situation
+    const double myHeadwayTT;
+
+
 
 private:
     /// @brief Invalidated assignment operator

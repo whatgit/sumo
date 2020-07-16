@@ -734,6 +734,8 @@ private:
     std::vector<double> mySGAPspan;
     /// @brief All values for time gap
     std::vector<double> myTGAPspan;
+	/// @brief All values for leader during TGAP and SGAP
+	std::vector<std::string> myTGAPLeaderspan;
     /// @brief Extremal values for the global measures (as <<<time, Position>, value>, [leaderID]>-pairs)
     /// @{
     std::pair<std::pair<double, Position>, double> myMaxBR;

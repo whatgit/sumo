@@ -479,7 +479,7 @@ MSDevice_SSM::computeGlobalMeasures() {
             if (leader.first == nullptr) {
                 mySGAPspan.push_back(INVALID);
             } else {
-                double sgap = leader.second + leader.first->getVehicleType().getMinGap();
+                double sgap = leader.second + myHolder.first->getVehicleType().getMinGap();
                 mySGAPspan.push_back(sgap);
                 if (sgap < myMinSGAP.first.second) {
                     myMinSGAP = std::make_pair(std::make_pair(std::make_pair(SIMTIME, myHolderMS->getPosition()), sgap), leader.first->getID());
@@ -492,7 +492,7 @@ MSDevice_SSM::computeGlobalMeasures() {
                 myTGAPspan.push_back(INVALID);
 				myTGAPLeaderspan.push_back("NA");
             } else {
-                const double tgap = (leader.second + leader.first->getVehicleType().getMinGap()) / myHolderMS->getSpeed();
+                const double tgap = (leader.second + myHolder.first->getVehicleType().getMinGap()) / myHolderMS->getSpeed();
                 myTGAPspan.push_back(tgap);
 				myTGAPLeaderspan.push_back(leader.first->getID());
                 if (tgap < myMinTGAP.first.second) {

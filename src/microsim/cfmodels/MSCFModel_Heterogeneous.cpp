@@ -171,7 +171,7 @@ MSCFModel_Heterogeneous::_v(const MSVehicle* const veh, const double gap2pred, c
 // this is more or less based on http://www.vwi.tu-dresden.de/~treiber/MicroApplet/IDM.html
 // and http://arxiv.org/abs/cond-mat/0304337
 // we assume however constant speed for the leader
-    double headwayTime = myHeadwayCC;
+    double headwayTime = myHeadwayTime;
     std::pair<const MSVehicle*, double> leader = veh->getLeader(100);   //Let's say we look ahead 100m
     if (leader.first != 0 && leader.second != -1) {
         std::string myLeaderType = leader.first->getVehicleType().getID();

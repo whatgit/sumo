@@ -491,9 +491,11 @@ MSDevice_SSM::computeGlobalMeasures() {
             if (leader.first == nullptr || myHolderMS->getSpeed() == 0.) {
                 myTGAPspan.push_back(INVALID);
 				myTGAPLeaderspan.push_back("NA");
+                myFollowSpeedspan.push_back(INVALID);
             } else {
                 const double tgap = (leader.second + myHolder.getVehicleType().getMinGap()) / myHolderMS->getSpeed();
                 myTGAPspan.push_back(tgap);
+                myFollowSpeedspan.push_back(myHolderMS->getSpeed());
 				myTGAPLeaderspan.push_back(leader.first->getID());
                 if (tgap < myMinTGAP.first.second) {
                     myMinTGAP = std::make_pair(std::make_pair(std::make_pair(SIMTIME, myHolderMS->getPosition()), tgap), leader.first->getID());
@@ -2618,6 +2620,7 @@ MSDevice_SSM::flushGlobalMeasures() {
         if (myComputeTGAP) {
             myOutputFile->openTag("TGAPSpan").writeAttr("values", makeStringWithNAs(myTGAPspan, INVALID)).closeTag();
 			myOutputFile->openTag("TGAPLeaderSpan").writeAttr("values", myTGAPLeaderspan).closeTag();
+            myOutputFile->openTag("FollowSpeedSpan").writeAttr("values", makeStringWithNAs(myFollowSpeedspan, INVALID)).closeTag();
             if (myMinTGAP.second != "") {
                 if (myUseGeoCoords) {
                     toGeo(myMinTGAP.first.first.second);
